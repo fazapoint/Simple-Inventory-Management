@@ -1,0 +1,1 @@
+scaffold-dbcontext "Server=127.0.0.1,1455;Database=InventoryDb;uid=faza;pwd=faza;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
