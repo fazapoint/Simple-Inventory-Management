@@ -11,5 +11,7 @@ namespace InventoryManagementWeb.ViewModels
         public int? Quantity { get; set; }
         public DateTime? Date { get; set; }
         public List<Product>? Products { get; set; } // Add this property
+
+        public Transaction Transaction { get; set; }
     }
 }

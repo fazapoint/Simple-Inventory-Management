@@ -13,6 +13,15 @@ services:
     networks:
       - trainingnet
 
+  inventoryweb:
+    build: 
+      context: ../InventoryManagement
+      dockerfile: InventoryManagementWeb/Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - trainingnet
+
   # worketl:
   #   build: 
   #     context: ../WorkerServiceDemo

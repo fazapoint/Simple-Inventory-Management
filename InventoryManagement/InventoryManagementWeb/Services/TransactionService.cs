@@ -17,15 +17,6 @@ namespace InventoryManagementWeb.Services
             try
             {
                 var product = _inventoryDbContext.Products.FirstOrDefault(p => p.ProductId == entity.ProductId);
-                if (product == null)
-                {
-                    throw new Exception("Product not found");
-                }
-
-                if (entity.TransactionType == false && product.StockLevel == 0)
-                {
-                    throw new Exception("Cannot create a sale transaction for a product with zero stock level");
-                }
 
                 _inventoryDbContext.Transactions.Add(entity);
                 _inventoryDbContext.SaveChanges();
@@ -63,6 +54,7 @@ namespace InventoryManagementWeb.Services
             var results = from t in _inventoryDbContext.Transactions
                           join p in _inventoryDbContext.Products
                           on t.ProductId equals p.ProductId
+                          orderby t.TransactionId descending
                           select new TransactionProductViewModel
                           {
                               TransactionID = t.TransactionId,
@@ -75,11 +67,6 @@ namespace InventoryManagementWeb.Services
             return results.ToList();
         }
 
-        public IEnumerable<Transaction> GetTransactionsByName(string transactionName)
-        {
-            throw new NotImplementedException();
-        }
-
         public Transaction Update(Transaction entity)
         {
             throw new NotImplementedException();
@@ -90,6 +77,7 @@ namespace InventoryManagementWeb.Services
             var results = from t in _inventoryDbContext.Transactions
                           join p in _inventoryDbContext.Products on t.ProductId equals p.ProductId
                           where p.Name.Contains(productName)
+                          orderby t.Date descending
                           select new TransactionProductViewModel
                           {
                               TransactionID = t.TransactionId,
