@@ -7,5 +7,6 @@ namespace InventoryManagementWeb.Contracts
     {
         IEnumerable<TransactionProductViewModel> GetProductTransactions();
         IEnumerable<TransactionProductViewModel> GetTransactionsByProductName(string transactionName);
+        TransactionProductViewModel GetByIdJoin(int id);
     }
 }

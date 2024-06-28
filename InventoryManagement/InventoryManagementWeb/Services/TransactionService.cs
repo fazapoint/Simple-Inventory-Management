@@ -1,6 +1,7 @@
 ﻿using InventoryManagementWeb.Contracts;
 using InventoryManagementWeb.Models;
 using InventoryManagementWeb.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagementWeb.Services
 {
@@ -47,6 +48,32 @@ namespace InventoryManagementWeb.Services
                 throw new ArgumentException("Transaction not found");
             }
             return result;
+        }
+
+        public TransactionProductViewModel GetByIdJoin(int id)
+        {
+            var result = _inventoryDbContext.Transactions
+                .Where(t => t.TransactionId == id)
+                .Include(t => t.Product)
+                .FirstOrDefault();
+
+            if (result == null)
+            {
+                throw new ArgumentException("Transaction not found");
+            }
+
+            // Mapping to TransactionProductViewModel
+            var viewModel = new TransactionProductViewModel
+            {
+                TransactionID = result.TransactionId,
+                ProductID = result.ProductId,
+                ProductName = result.Product.Name,
+                TransactionType = result.TransactionType,
+                Quantity = result.Quantity,
+                Date = result.Date
+            };
+
+            return viewModel;
         }
 
         public IEnumerable<TransactionProductViewModel> GetProductTransactions()

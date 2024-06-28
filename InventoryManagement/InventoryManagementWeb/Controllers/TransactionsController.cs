@@ -34,7 +34,7 @@ namespace InventoryManagementWeb.Controllers
         // GET: ProductsController/Details/5
         public ActionResult Details(int id)
         {
-            var transaction = _transaction.GetById(id);
+            var transaction = _transaction.GetByIdJoin(id);
             return View(transaction);
         }
 
