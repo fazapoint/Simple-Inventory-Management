@@ -3,7 +3,8 @@ using InventoryManagementWeb.ViewModels;
 
 namespace InventoryManagementWeb.Contracts
 {
-    public interface IProduct : ICrud<Product>
+    public interface ITransaction : ICrud<Transaction>
     {
+        IEnumerable<TransactionProductViewModel> GetProductTransactions();
     }
 }

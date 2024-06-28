@@ -1,13 +1,14 @@
 ﻿using InventoryManagementWeb.Contracts;
 using InventoryManagementWeb.Models;
+using InventoryManagementWeb.ViewModels;
 using System;
 
 namespace InventoryManagementWeb.Services
 {
-    public class ProductsService : IProduct
+    public class ProductService : IProduct
     {
         private readonly InventoryDbContext _inventoryDbContext;
-        public ProductsService(InventoryDbContext inventoryDbContext)
+        public ProductService(InventoryDbContext inventoryDbContext)
         {
             _inventoryDbContext = inventoryDbContext;
         }

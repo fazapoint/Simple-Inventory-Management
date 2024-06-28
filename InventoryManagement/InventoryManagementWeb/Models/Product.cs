@@ -10,4 +10,6 @@ public partial class Product
     public string? Name { get; set; }
 
     public int? StockLevel { get; set; }
+
+    public virtual ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
 }

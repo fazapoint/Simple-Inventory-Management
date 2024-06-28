@@ -14,4 +14,6 @@ public partial class Transaction
     public int? Quantity { get; set; }
 
     public DateTime? Date { get; set; }
+
+    public virtual Product? Product { get; set; }
 }

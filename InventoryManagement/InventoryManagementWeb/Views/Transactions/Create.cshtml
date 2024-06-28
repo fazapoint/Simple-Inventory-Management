@@ -1,0 +1,49 @@
+﻿@model InventoryManagementWeb.ViewModels.TransactionProductViewModel
+<html>
+<head>
+    <title>Create Transaction</title>
+</head>
+<body>
+    <h2>Create Transaction</h2>
+    <form method="post" action="/Transactions/Create">
+        <div>
+            <label for="ProductId">Product Name</label>
+            <select name="ProductId" id="ProductId">
+                @foreach (var product in Model.Products)
+                {
+                    <option value="@product.ProductId">@product.Name</option>
+                }
+            </select>
+
+            <select name="TransactionType" id="TransactionType">
+                <option value="true">Purchase</option>
+                <option value="false">Sale</option>
+            </select>
+
+            <label for="Quantity">Quantity</label>
+            <input type="text" name="Quantity" />
+
+            <label for="Date">Date</label>
+            <input type="datetime-local" name="Date" id="Date"/>
+        </div>
+        <div>
+            <input type="submit" value="Create" />
+        </div>
+    </form>
+
+    <script>
+        window.onload = function() {
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = ('0' + (now.getMonth() + 1)).slice(-2);
+            var day = ('0' + now.getDate()).slice(-2);
+            var hour = ('0' + now.getHours()).slice(-2);
+            var minute = ('0' + now.getMinutes()).slice(-2);
+            var second = ('0' + now.getSeconds()).slice(-2);
+
+            var formattedDateTime = year + '-' + month + '-' + day + 'T' + hour + ':' + minute;
+            document.getElementById('Date').value = formattedDateTime;
+        }
+    </script>
+</body>
+</html>

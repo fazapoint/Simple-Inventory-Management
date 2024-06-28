@@ -1,0 +1,44 @@
+﻿@model List<InventoryManagementWeb.ViewModels.TransactionProductViewModel>
+
+<html>
+<head>
+    <title>List Of Transactions</title>
+</head>
+<body>
+    <h1>List Of Transactions</h1>
+    <br />
+    @ViewBag.Message
+    <br />
+    <form method="post" action="/Transactions/Index">
+        <input type="text" name="categoryname" />
+        <input type="submit" value="Search" />
+    </form>
+    <br />
+
+    <a href="/Transactions/Create">Create Transactions</a>
+    <table border="1">
+        <tr>
+            <th>Transaction Id</th>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Transaction Type</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+        </tr>
+        @foreach (var transaction in Model)
+        {
+            <tr>
+                <td>@transaction.TransactionID</td>
+                <td>@transaction.ProductID</td>
+                <td>@transaction.ProductName</td>
+                <td>@transaction.TransactionType</td>
+                <td>@transaction.Quantity</td>
+                <td>@transaction.Date</td>
+                <td><a href="/Transactions/Details/@transaction.TransactionID">detail</a></td>
+            </tr>
+        }
+    </table>
+
+</body>
+</html>
