@@ -15,10 +15,18 @@ namespace InventoryManagementWeb.Controllers
         }
 
         // GET: ProductsController
-        public ActionResult Index()
+        public ActionResult Index(string productName ="")
         {
-            var models = _product.GetAll();
-            return View(models);
+            IEnumerable<Product> products;
+            if (productName != "")
+            {
+                products = _product.GetProductsByName(productName);
+            }
+            else
+            {
+                products = _product.GetAll();
+            }
+            return View(products);
         }
 
         // GET: ProductsController/Details/5

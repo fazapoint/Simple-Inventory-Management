@@ -6,5 +6,6 @@ namespace InventoryManagementWeb.Contracts
     public interface ITransaction : ICrud<Transaction>
     {
         IEnumerable<TransactionProductViewModel> GetProductTransactions();
+        IEnumerable<TransactionProductViewModel> GetTransactionsByProductName(string transactionName);
     }
 }

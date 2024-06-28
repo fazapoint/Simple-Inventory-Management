@@ -16,6 +16,17 @@ namespace InventoryManagementWeb.Services
         {
             try
             {
+                var product = _inventoryDbContext.Products.FirstOrDefault(p => p.ProductId == entity.ProductId);
+                if (product == null)
+                {
+                    throw new Exception("Product not found");
+                }
+
+                if (entity.TransactionType == false && product.StockLevel == 0)
+                {
+                    throw new Exception("Cannot create a sale transaction for a product with zero stock level");
+                }
+
                 _inventoryDbContext.Transactions.Add(entity);
                 _inventoryDbContext.SaveChanges();
                 return entity;
@@ -64,11 +75,34 @@ namespace InventoryManagementWeb.Services
             return results.ToList();
         }
 
+        public IEnumerable<Transaction> GetTransactionsByName(string transactionName)
+        {
+            throw new NotImplementedException();
+        }
+
         public Transaction Update(Transaction entity)
         {
             throw new NotImplementedException();
         }
 
+        IEnumerable<TransactionProductViewModel> ITransaction.GetTransactionsByProductName(string productName)
+        {
+            var results = from t in _inventoryDbContext.Transactions
+                          join p in _inventoryDbContext.Products on t.ProductId equals p.ProductId
+                          where p.Name.Contains(productName)
+                          select new TransactionProductViewModel
+                          {
+                              TransactionID = t.TransactionId,
+                              ProductID = t.ProductId,
+                              TransactionType = t.TransactionType,
+                              Quantity = t.Quantity,
+                              Date = t.Date,
+                              ProductName = p.Name
+                          };
 
+            return results.ToList();
+
+
+        }
     }
 }

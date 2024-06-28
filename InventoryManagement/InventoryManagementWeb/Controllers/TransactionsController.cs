@@ -17,10 +17,18 @@ namespace InventoryManagementWeb.Controllers
         }
 
 
-        public IActionResult Index()
+        public IActionResult Index(string productName = "")
         {
-            var models = _transaction.GetProductTransactions();
-            return View(models);
+            IEnumerable<TransactionProductViewModel> transactions;
+            if (productName != "")
+            {
+                transactions = _transaction.GetTransactionsByProductName(productName);
+            }
+            else
+            {
+                transactions = _transaction.GetProductTransactions();
+            }
+            return View(transactions);
         }
 
         // GET: ProductsController/Details/5

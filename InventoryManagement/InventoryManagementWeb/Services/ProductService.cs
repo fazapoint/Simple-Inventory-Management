@@ -86,5 +86,13 @@ namespace InventoryManagementWeb.Services
                 throw new ArgumentException(ex.Message);
             }
         }
+
+        public IEnumerable<Product> GetProductsByName(string productName)
+        {
+            var results = (from c in _inventoryDbContext.Products
+                           where c.Name.Contains(productName)
+                           select c).ToList();
+            return results;
+        }
     }
 }
