@@ -62,7 +62,7 @@ namespace InventoryManagementWeb.Services
                 throw new ArgumentException("Transaction not found");
             }
 
-            // Mapping to TransactionProductViewModel
+            // Mapping ke TransactionProductViewModel
             var viewModel = new TransactionProductViewModel
             {
                 TransactionID = result.TransactionId,

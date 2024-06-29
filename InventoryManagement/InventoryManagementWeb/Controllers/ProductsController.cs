@@ -104,7 +104,6 @@ namespace InventoryManagementWeb.Controllers
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it as needed
                 ViewBag.ErrorMessage = $"Failed to delete vehicle: {ex.Message}";
                 return View();
             }
