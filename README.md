@@ -53,7 +53,7 @@ When a transaction of type "restock" is created, the stock level of the product 
 
     ```json
     "ConnectionStrings": {
-        "DefaultConnection": "Server=localhost,1433;Database=InventoryDb;User Id=faza;Password=faza;"
+        "DefaultConnection": "Server=demodb;Database=InventoryDb;User Id=faza;Password=faza;"
     }
     ```
 
