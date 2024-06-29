@@ -46,7 +46,7 @@ When a transaction of type "restock" is created, the stock level of the product 
     - **Port**: `1433`
     - **Username**: `faza`
     - **Password**: `faza`
-    
+
 3. **Update the Connection String**
 
     In your `appsettings.json` file, update the connection string to match your SQL Server configuration:
@@ -99,19 +99,5 @@ When a transaction of type "restock" is created, the stock level of the product 
 2. Select the type of transaction (Restock or Sold).
 3. Choose the product and specify the quantity.
 4. Save the transaction to update the stock level accordingly.
-
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request with your changes. Ensure your code follows the project's coding standards and includes appropriate tests.
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
-
-## Contact
-
-For questions or issues, please open an issue on the [GitHub repository](https://github.com/yourusername/Simple-Inventory-Management/issues).
-
----
 
 Thank you for using Simple-Inventory-Management! We hope it makes managing your inventory easier and more efficient.
